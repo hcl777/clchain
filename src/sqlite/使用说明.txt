@@ -1,0 +1,103 @@
+
+//**************************************
+一.基本接口使用:
+sqlite3_open() 打开DB
+sqlite3_close() 关闭
+sqlite3_exec() 执行一个SQL
+sqlite3_free() 释放由sqlite3 apia产生的动态字符串
+sqlite3_free_table() 释放查询得到的一维字符串数组
+sqlite3_mprintf() 转义特殊符号操作 用"%q"
+
+二进制数据操作相关:
+sqlite3_stmt * stat;
+sqlite3_prepare(stat)  初始化stat
+sqlite3_bind_blob(stat,1,buf,buflen,NULL) 将buf设为第1列的块地址    
+sqlite3_step(stat)
+sqlite3_finalize(stat)  释放stat
+sqlite3_reset(stat) 将已经使用的stat重置到sqlite3_prepare()后的状态以重复利用。
+sqlite3_column_int(stat,0) 获取第0列的整数值
+sqlite3_column_blob(stat,1) 获取第1列的块地址
+sqlite3_column_bytes(stat,1) 获取第1列的长度
+//======================================
+
+
+//**************************************
+二.数据类型
+sqlite采用动态数据类型，根据存入值自动判断，SQLite具有以下五种数据类型：
+
+1.NULL：空值。
+2.INTEGER：带符号的整型，具体取决有存入数字的范围大小。
+3.REAL：浮点数字，存储为8-byte IEEE浮点数。
+4.TEXT：字符串文本。
+5.BLOB：二进制对象。
+
+但实际上，sqlite3也接受如下的数据类型：
+ smallint 16 位元的整数。
+ integer 32 位元的整数。
+ decimal(p,s) p 精确值和 s 大小的十进位整数，精确值p是指全部有几个数(digits)大小值，s是指小数点後有几位数。如果没有特别指定，则系统会设为 p=5; s=0 。
+ float  32位元的实数。
+ double  64位元的实数。
+ char(n)  n 长度的字串，n不能超过 254。
+ nvarchar(n) 长度不固定且其最大长度为 n 的字串，n不能超过 4000。
+ graphic(n) 和 char(n) 一样，不过其单位是两个字元 double-bytes， n不能超过127。这个形态是为了支援两个字元长度的字体，例如中文字。
+ vargraphic(n) 可变长度且其最大长度为 n 的双字元字串，n不能超过 2000
+ date  包含了 年份、月份、日期。
+ time  包含了 小时、分钟、秒。
+ timestamp 包含了 年、月、日、时、分、秒、千分之一秒。 
+datetime 包含日期时间格式，必须写成'2010-08-05'不能写为'2010-8-5'，否则在读取时会产生错误！
+    --- datetime 类型在sql语句中值使用" datetime('now','localtime')" 即可得最新时间。
+//======================================
+
+
+//**************************************
+三.sqlite3 命令行基本操作列
+1、创建数据表
+
+　 现在在school里创建三个数据表 school(学校)、s_class(班级)、s_student(学生)
+
+　  1）选择数据库
+
+　　sqlite>sqlite3 school.db
+
+　  2) 创建数据表
+
+　　sqlite>create table school(id integer primary key autoincrement,sname nvarchar(50),saddr nvarchar(150),sMemo nvarchar(300));
+
+　　sqilte>create table s_class(id integer primary key autoincrement,schoolid integer,sname nvarchar(50),sMemo nvarchar(300),dDate datetime);
+
+　　sqlite>create table s_student(id integer primary key autoincrement,schoolid integer,sname nvarchar(20),smobile nvarchar(30),saddr nvarchar(150),sOne nvarchar(30),sTwo nvarchar(30),sThree nvarchar(30),sFour nvarchar(30),sFive nvarchar(30));
+
+　　3)查看当前数据，查看当前数据的数据表，查看当前数据表结构
+
+　　查看当前数据库
+
+　　sqlite>.databases
+
+　　查看当前数据库表
+
+　　sqlite>.table
+
+　　查看数据表结构
+
+　　sqlite>.schema school
+
+　　修改表结构
+
+　　sqlite不能直接删除字段，能添加字段
+
+　　sqlite>alter table s_class  add column bDo int default 0;
+
+　　删除字段需要到处sql，然后再导入数据（形似mysql）
+
+　　删除数据表
+
+　　sqlite>drop table s_class;
+
+//======================================
+
+
+//**************************************
+建表语法:
+create table table_name( column_definition references foreign_table (column_name)on {delete|update} integrity_action[not] deferrable [initially {deferred|immediate}, ]… );
+//======================================
+

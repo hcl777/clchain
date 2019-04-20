@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="block.h" />
+    <ClInclude Include="referee.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="chain.h" />
+    <ClInclude Include="genesis.h" />
+    <ClInclude Include="cpo.h" />
+    <ClInclude Include="blockcache.h" />
+    <ClInclude Include="blocksvr.h" />
+    <ClInclude Include="peersvr.h" />
+    <ClInclude Include="cproto.h" />
+    <ClInclude Include="proposer.h" />
+    <ClInclude Include="blockmaker.h" />
+    <ClInclude Include="searcher.h" />
+    <ClInclude Include="trackproto.h" />
+    <ClInclude Include="mci.h" />
+    <ClInclude Include="blocksync.h" />
+    <ClInclude Include="chainview.h" />
+    <ClInclude Include="btrans.h" />
+    <ClInclude Include="tracker.h" />
+    <ClInclude Include="trahttp.h" />
+    <ClInclude Include="trarun.h" />
+    <ClInclude Include="secdb.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="block.cpp" />
+    <ClCompile Include="referee.cpp" />
+    <ClCompile Include="common.cpp" />
+    <ClCompile Include="chain.cpp" />
+    <ClCompile Include="genesis.cpp" />
+    <ClCompile Include="cpo.cpp" />
+    <ClCompile Include="blockcache.cpp" />
+    <ClCompile Include="blocksvr.cpp" />
+    <ClCompile Include="peersvr.cpp" />
+    <ClCompile Include="cproto.cpp" />
+    <ClCompile Include="proposer.cpp" />
+    <ClCompile Include="blockmaker.cpp" />
+    <ClCompile Include="searcher.cpp" />
+    <ClCompile Include="trackproto.cpp" />
+    <ClCompile Include="mci.cpp" />
+    <ClCompile Include="blocksync.cpp" />
+    <ClCompile Include="chainview.cpp" />
+    <ClCompile Include="btrans.cpp" />
+    <ClCompile Include="tracker.cpp" />
+    <ClCompile Include="trahttp.cpp" />
+    <ClCompile Include="trarun.cpp" />
+    <ClCompile Include="secdb.cpp" />
+  </ItemGroup>
+</Project>
